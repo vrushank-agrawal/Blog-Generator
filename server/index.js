@@ -12,7 +12,7 @@ const connectToDB = require('./config/connectToDB');
 connectToDB()
 
 // Load models
-const Blog = require('./models/blogs');
+const Blog = require('./models/blog');
 
 
 /************************************
