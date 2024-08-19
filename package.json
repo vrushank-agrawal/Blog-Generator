@@ -8,6 +8,10 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "concurrently \"node server/index.js\" \"cd client && npm start\""
   },
+  "workspaces": [
+    "/",
+    "/client"
+  ],
   "keywords": [],
   "author": "vrushank-agrawal",
   "license": "MIT",
