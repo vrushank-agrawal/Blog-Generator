@@ -24,6 +24,7 @@ const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 const GeminiModel = genAI.getGenerativeModel({ model: "gemini-1.5-flash"});
 
 async function generateBlog(prompt) {
+    prompt = "Generate a blog post of 400 words about the following topic: \n" + prompt;
     const result = await GeminiModel.generateContent(prompt);
     const response = await result.response;
     const text = response.text();
@@ -49,12 +50,13 @@ app.get('/api/posts', async (req, res) => {
 // POST /api/posts
 app.post('/api/generate', async (req, res) => {
     const prompt = req.body.prompt;
-    const content = await generateBlog(prompt);
-    console.log(content);
+    const answer = await generateBlog(prompt);
+    // the title is the first sentence of the generated content and the content is the rest of the text
+    const title = answer.split('\n\n')[0];
+    const content = answer.split('\n\n').slice(1).join('\n\n');
 
     try {
-        const blog = await Blog.create({ title: prompt, content: content });
-        // const blog = await Blog.create({ title: prompt, content: "content" });
+        const blog = await Blog.create({ title: title, content: content });
         res.json(blog);
     } catch {
         res.status(500).send('An error occurred while generating the blog post');
