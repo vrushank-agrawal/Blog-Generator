@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors');
 const app = express();
 app.use(express.json());
 
@@ -6,6 +7,17 @@ app.use(express.json());
 if (process.env.NODE_ENV !== 'production') {
     require('dotenv').config();
 }
+
+const corsOptions = {
+    origin: '*',
+    methods: 'GET,POST,DELETE',
+    allowedHeaders: 'Content-Type,Authorization',
+    credentials: true,
+    exposeHeaders: 'Content-Length,X-Kuma-Revision',
+    maxAge: 86400
+};
+
+app.use(cors(corsOptions));
 
 // Connect to database
 const connectToDB = require('./config/connectToDB');
@@ -53,10 +65,17 @@ app.post('/api/generate', async (req, res) => {
 
     try {
         const answer = await generateBlog(prompt);
+
+        // First 2 letters are '##' for titles, so we remove them
+        answer = answer.slice(3) + (answer.slice(0, 2) == '##' ? '' : answer);
+        // We split the answer into title and content based on the first double newline
         const title = answer.split('\n\n')[0];
         const content = answer.split('\n\n').slice(1).join('\n\n');
+
+        // Create a new blog post
         const blog = await Blog.create({ title: title, content: content });
         res.json(blog);
+
     } catch (err) {
         console.error(err);
         res.status(500).send('An error occurred while generating the blog post');
