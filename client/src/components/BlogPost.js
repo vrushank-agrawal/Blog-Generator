@@ -3,12 +3,14 @@ import { FaTrashAlt } from 'react-icons/fa';
 import styles from "../styles/blogStyle";
 
 const BlogPost = ({ posts, onDelete }) => {
+    const sortedPosts = posts.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+
     return (
         <div>
-            {posts.length === 0 ? (
+            {sortedPosts.length === 0 ? (
                 <div style={styles.error}>No posts found.</div>
             ) : (
-                posts.map((post) => (
+                sortedPosts.map((post) => (
                     <div style={styles.container} key={post._id}>
                         <div style={styles.textContainer}> {/* Rounded box around the text */}
                             <div style={styles.title}>{post.title}</div>
