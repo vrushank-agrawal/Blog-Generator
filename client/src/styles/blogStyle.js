@@ -53,6 +53,12 @@ const styles = {
         boxShadow: '0px 1.5px 2px rgba(0, 0, 0, 0.25)',
         cursor: 'pointer',
     },
+    error: {
+        textAlign: 'center',
+        fontSize: '1.5rem',
+        color: colors.TextOrange,
+        padding: '20px',
+    }
 };
 
 export default styles;

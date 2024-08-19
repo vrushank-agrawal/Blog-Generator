@@ -24,6 +24,12 @@ const styles = {
         paddingLeft: '10px',
         outline: 'none',
     },
+    form: {
+        display: 'inline-flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        width: '100%',
+    },
     button: {
         color: colors.Black,
         fontSize: '15px',

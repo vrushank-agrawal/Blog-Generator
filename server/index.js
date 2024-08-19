@@ -64,10 +64,10 @@ app.post('/api/generate', async (req, res) => {
     const prompt = req.body.prompt;
 
     try {
-        const answer = await generateBlog(prompt);
+        const initialAnswer = await generateBlog(prompt);
 
         // First 2 letters are '## ' for titles, so we remove them
-        answer = answer.slice(4);
+        const answer = initialAnswer.slice(3);
         // We split the answer into title and content based on the first double newline
         const title = answer.split('\n\n')[0];
         const content = answer.split('\n\n').slice(1).join('\n\n');

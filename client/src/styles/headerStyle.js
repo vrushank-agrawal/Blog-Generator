@@ -7,7 +7,7 @@ const styles = {
         alignItems: 'center',
         justifyContent: 'center',
         height: '200px',
-        width: '97%',
+        width: '97.25%',
         padding: '20px'
     },
     title: {
