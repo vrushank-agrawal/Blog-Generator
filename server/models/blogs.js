@@ -9,7 +9,7 @@ const blogSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    timeCreated: {
+    createdAt: {
         type: Date,
         default: Date.now
     }

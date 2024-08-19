@@ -1,7 +1,3 @@
-function Hello() {
-    console.log('Hello');
-}
-
 // Load environment variables
 if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config();
@@ -9,7 +5,7 @@ if (process.env.NODE_ENV !== 'production') {
 
 const mongoose = require('mongoose');
 
-async function main() {
+async function connectToDB() {
   try {
     await mongoose.connect(process.env.DB_URL);
     console.log('Connected to database');
@@ -19,4 +15,4 @@ async function main() {
   }
 }
 
-module.exports = main;
+module.exports = connectToDB;
