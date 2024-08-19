@@ -1,0 +1,20 @@
+{
+  "name": "blog-generator",
+  "version": "1.0.0",
+  "description": "Web application that allows users to generate and manage blog posts using a LLM. The application focuses on content creation, display, and basic management functionalities.",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon server/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "vrushank-agrawal",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "mongoose": "^8.5.3",
+    "nodemon": "^3.1.4"
+  }
+}
